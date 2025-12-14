@@ -55,7 +55,7 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için herhangi bir sunucu ku
 
 1.  Projeyi indirin veya klonlayın:
     ```bash
-    git clone [https://github.com/kullaniciadi/proje-adi.git](https://github.com/kullaniciadi/proje-adi.git)
+    git clone [https://github.com/thetokur/apartman-yonetim-sistemi.github.io.git](https://github.com/thetokur/apartman-yonetim-sistemi.github.io.git)
     ```
 2.  Klasörün içindeki `index.html` dosyasına çift tıklayın.
 3.  Proje varsayılan tarayıcınızda açılacaktır.
