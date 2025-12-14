@@ -4,7 +4,7 @@ Bu proje, site ve apartman yönetim süreçlerini dijitalleştirmek amacıyla ge
 
 **Not:** Bu sürüm GitHub Pages üzerinde çalışabilmesi için **Serverless (Sunucusuz)** modda tasarlanmıştır. Veritabanı olarak tarayıcının `LocalStorage` özelliğini kullanır. Sayfayı yenileseniz bile verileriniz kaybolmaz (tarayıcı önbelleği temizlenene kadar).
 
-🔗 **Canlı Demo:** [Buraya GitHub Pages Linkinizi Yapıştırın](https://kullaniciadi.github.io/repo-adi)
+🔗 **Canlı Demo:** https://thetokur.github.io/apartman-yonetim-sistemi.github.io/
 
 ---
 
