@@ -18,17 +18,12 @@
         body { font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color: transparent; }
         .hidden { display: none !important; }
         .modal-bg { background-color: rgba(0,0,0,0.75); backdrop-filter: blur(4px); }
-        
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #1e293b; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-        
         .smooth-scroll { -webkit-overflow-scrolling: touch; }
-        
         .toast { animation: slideIn 0.3s ease-out forwards; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        
         .pulse-border { animation: pulse-border 2s infinite; }
         @keyframes pulse-border {
             0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
@@ -58,7 +53,7 @@
             <form onsubmit="event.preventDefault(); login();">
                 <div class="mb-4">
                     <label class="block text-sm text-slate-400 mb-1">Kullanıcı Adı</label>
-                    <input type="text" id="log-user" placeholder="admin / personel / sakin" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
+                    <input type="text" id="log-user" placeholder="örn: ayse" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm text-slate-400 mb-1">Şifre</label>
@@ -67,13 +62,12 @@
                 <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded transition shadow-lg shadow-indigo-500/30 active:scale-95">Giriş Yap</button>
             </form>
             <div class="mt-4 text-center text-xs text-slate-500">
-                Varsayılan şifre: 123456
+                Tüm kullanıcılar için şifre: 123456
             </div>
         </div>
     </div>
 
     <div id="dashboard-layout" class="hidden flex-1 flex overflow-hidden relative w-full h-full">
-        
         <div id="mobile-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden glass transition-opacity"></div>
 
         <aside id="main-sidebar" class="fixed inset-y-0 left-0 w-64 bg-slate-850 border-r border-slate-700 flex flex-col shadow-xl z-50 transform -translate-x-full md:translate-x-0 md:static sidebar-transition h-full">
@@ -82,9 +76,7 @@
                     <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold">A</div>
                     <span class="text-lg font-bold text-white tracking-wide">Aksaray Konutları</span>
                 </div>
-                <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-white p-2">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-white p-2"><i class="fas fa-times text-xl"></i></button>
             </div>
             
             <nav class="flex-1 p-4 space-y-1 overflow-y-auto smooth-scroll">
@@ -115,22 +107,13 @@
         <main class="flex-1 flex flex-col bg-slate-900 relative w-full h-full min-w-0">
             <header class="h-16 bg-slate-850 border-b border-slate-700 flex items-center justify-between px-4 md:px-6 shadow-md shrink-0 z-30 relative">
                 <div class="flex items-center gap-3 min-w-0">
-                    <button onclick="toggleSidebar()" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2 -ml-2">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+                    <button onclick="toggleSidebar()" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2 -ml-2"><i class="fas fa-bars text-xl"></i></button>
                     <h2 id="page-title" class="text-lg md:text-xl font-bold text-white truncate">Ana Sayfa</h2>
                 </div>
-                
                 <div class="flex items-center gap-4">
                     <div class="relative cursor-pointer" onclick="toggleNotifications()">
-                        <div class="p-2">
-                            <i class="fas fa-bell text-slate-400 text-xl hover:text-white transition"></i>
-                        </div>
-                        
-                        <div id="notif-count" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-slate-900 hidden">
-                            +0
-                        </div>
-                        
+                        <div class="p-2"><i class="fas fa-bell text-slate-400 text-xl hover:text-white transition"></i></div>
+                        <div id="notif-count" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-slate-900 hidden">+0</div>
                         <div id="notif-dropdown" class="absolute right-0 top-12 w-72 md:w-80 bg-slate-800 border border-slate-700 rounded shadow-xl hidden z-50">
                             <div class="p-3 border-b border-slate-700 flex justify-between items-center bg-slate-850 rounded-t">
                                 <span class="font-bold text-sm text-white">Bildirimler</span>
@@ -144,7 +127,6 @@
                     </div>
                 </div>
             </header>
-
             <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth w-full smooth-scroll pb-20 md:pb-6"></div>
         </main>
     </div>
@@ -166,21 +148,15 @@
         <div class="bg-slate-800 rounded-2xl w-full max-w-4xl border border-slate-600 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             <div class="relative h-48 md:h-64 bg-slate-700 shrink-0">
                 <img id="ad-img" src="" class="w-full h-full object-cover hidden">
-                <div id="ad-placeholder" class="w-full h-full flex items-center justify-center bg-gradient-to-r from-indigo-800 to-slate-800">
-                    <i class="fas fa-bullhorn text-6xl text-white/20"></i>
-                </div>
-                <button onclick="closeModal('announcement-detail-modal')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white rounded-full w-10 h-10 flex items-center justify-center transition z-10">
-                    <i class="fas fa-times"></i>
-                </button>
+                <div id="ad-placeholder" class="w-full h-full flex items-center justify-center bg-gradient-to-r from-indigo-800 to-slate-800"><i class="fas fa-bullhorn text-6xl text-white/20"></i></div>
+                <button onclick="closeModal('announcement-detail-modal')" class="absolute top-4 right-4 bg-black/50 hover:bg-black/80 text-white rounded-full w-10 h-10 flex items-center justify-center transition z-10"><i class="fas fa-times"></i></button>
                 <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-900 to-transparent">
                     <span id="ad-priority" class="inline-block px-3 py-1 rounded text-xs font-bold uppercase mb-2"></span>
                     <h2 id="ad-title" class="text-2xl md:text-3xl font-bold text-white shadow-sm leading-tight"></h2>
                     <p id="ad-date" class="text-slate-300 text-sm mt-1"></p>
                 </div>
             </div>
-            <div class="p-6 md:p-8 overflow-y-auto bg-slate-800 smooth-scroll">
-                <p id="ad-content" class="text-base md:text-lg text-slate-200 leading-relaxed whitespace-pre-wrap"></p>
-            </div>
+            <div class="p-6 md:p-8 overflow-y-auto bg-slate-800 smooth-scroll"><p id="ad-content" class="text-base md:text-lg text-slate-200 leading-relaxed whitespace-pre-wrap"></p></div>
         </div>
     </div>
 
@@ -195,26 +171,11 @@
                     <input type="text" id="c-title" placeholder="Şikayet Başlığı" class="w-full mb-3 p-2 bg-slate-700 rounded border border-slate-600 text-white" required>
                     <textarea id="c-desc" rows="3" placeholder="Detaylı Açıklama" class="w-full mb-3 p-2 bg-slate-700 rounded border border-slate-600 text-white" required></textarea>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                        <select id="c-cat" class="p-2 bg-slate-700 rounded border border-slate-600 text-white w-full">
-                            <option value="Genel">Kategori Seçin</option>
-                            <option value="Asansör">Asansör</option>
-                            <option value="Elektrik">Elektrik</option>
-                            <option value="Su">Su / Tesisat</option>
-                            <option value="Temizlik">Temizlik</option>
-                        </select>
-                        <select id="c-prio" class="p-2 bg-slate-700 rounded border border-slate-600 text-white w-full">
-                            <option value="Normal">Normal</option>
-                            <option value="Acil">Acil</option>
-                        </select>
+                        <select id="c-cat" class="p-2 bg-slate-700 rounded border border-slate-600 text-white w-full"><option value="Genel">Kategori Seçin</option><option value="Asansör">Asansör</option><option value="Elektrik">Elektrik</option><option value="Su">Su / Tesisat</option><option value="Temizlik">Temizlik</option></select>
+                        <select id="c-prio" class="p-2 bg-slate-700 rounded border border-slate-600 text-white w-full"><option value="Normal">Normal</option><option value="Acil">Acil</option></select>
                     </div>
-                    <div class="mb-4">
-                        <label class="block text-sm text-slate-400 mb-1">Fotoğraflar (Simülasyon)</label>
-                        <input type="file" id="c-photos" multiple accept="image/*" class="w-full text-slate-400 text-sm file:bg-indigo-600 file:text-white file:rounded-full file:border-0 file:py-2 file:px-4 file:mr-4 hover:file:bg-indigo-700 cursor-pointer">
-                    </div>
-                    <div class="flex items-center mb-6">
-                        <input type="checkbox" id="c-priv" class="w-5 h-5 rounded bg-slate-700 border-slate-600">
-                        <label for="c-priv" class="ml-2 text-slate-300 text-sm">Özel Şikayet (Sadece yönetim)</label>
-                    </div>
+                    <div class="mb-4"><label class="block text-sm text-slate-400 mb-1">Fotoğraflar (Simülasyon)</label><input type="file" id="c-photos" multiple accept="image/*" class="w-full text-slate-400 text-sm file:bg-indigo-600 file:text-white file:rounded-full file:border-0 file:py-2 file:px-4 file:mr-4 hover:file:bg-indigo-700 cursor-pointer"></div>
+                    <div class="flex items-center mb-6"><input type="checkbox" id="c-priv" class="w-5 h-5 rounded bg-slate-700 border-slate-600"><label for="c-priv" class="ml-2 text-slate-300 text-sm">Özel Şikayet (Sadece yönetim)</label></div>
                     <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded font-bold">Oluştur</button>
                 </form>
             </div>
@@ -250,18 +211,9 @@
             <input type="text" id="nu-user" placeholder="Kullanıcı Adı" class="w-full p-3 mb-3 bg-slate-700 rounded border border-slate-600 text-white">
             <input type="text" id="nu-pass" placeholder="Şifre" class="w-full p-3 mb-3 bg-slate-700 rounded border border-slate-600 text-white">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
-                <select id="nu-block" class="p-3 bg-slate-700 rounded border border-slate-600 text-white w-full">
-                    <option value="A">A Blok</option>
-                    <option value="B">B Blok</option>
-                    <option value="C">C Blok</option>
-                    <option value="D">D Blok</option>
-                </select>
+                <select id="nu-block" class="p-3 bg-slate-700 rounded border border-slate-600 text-white w-full"><option value="A">A Blok</option><option value="B">B Blok</option><option value="C">C Blok</option><option value="D">D Blok</option></select>
                 <input type="text" id="nu-flat" placeholder="Daire No" class="p-3 bg-slate-700 rounded border border-slate-600 text-white w-full">
-                <select id="nu-role" class="p-3 bg-slate-700 rounded border border-slate-600 text-white w-full">
-                    <option value="resident">Sakin</option>
-                    <option value="staff">Personel</option>
-                    <option value="admin">Yönetici</option>
-                </select>
+                <select id="nu-role" class="p-3 bg-slate-700 rounded border border-slate-600 text-white w-full"><option value="resident">Sakin</option><option value="staff">Personel</option><option value="admin">Yönetici</option></select>
             </div>
             <button onclick="saveUser()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded w-full font-bold">Kaydet</button>
             <button onclick="closeModal('user-modal')" class="mt-2 text-slate-400 w-full text-center hover:text-white p-2">İptal</button>
@@ -273,15 +225,8 @@
             <h3 class="font-bold mb-4 text-xl">Yeni Duyuru</h3>
             <input type="text" id="an-title" placeholder="Başlık" class="w-full p-3 mb-3 bg-slate-700 rounded border border-slate-600 text-white">
             <textarea id="an-content" placeholder="İçerik" rows="4" class="w-full p-3 mb-3 bg-slate-700 rounded border border-slate-600 text-white"></textarea>
-            <select id="an-prio" class="w-full p-3 mb-4 bg-slate-700 rounded border border-slate-600 text-white">
-                <option value="Normal">Normal</option>
-                <option value="Önemli">Önemli</option>
-                <option value="Acil">ACİL</option>
-            </select>
-            <div class="mb-4">
-                <label class="block text-sm text-slate-400 mb-1">Duyuru Görseli (Simülasyon)</label>
-                <input type="file" id="an-photo" accept="image/*" class="w-full text-slate-400 text-sm file:bg-indigo-600 file:text-white file:rounded-full file:border-0 file:py-2 file:px-4 file:mr-4 hover:file:bg-indigo-700 cursor-pointer">
-            </div>
+            <select id="an-prio" class="w-full p-3 mb-4 bg-slate-700 rounded border border-slate-600 text-white"><option value="Normal">Normal</option><option value="Önemli">Önemli</option><option value="Acil">ACİL</option></select>
+            <div class="mb-4"><label class="block text-sm text-slate-400 mb-1">Duyuru Görseli (Simülasyon)</label><input type="file" id="an-photo" accept="image/*" class="w-full text-slate-400 text-sm file:bg-indigo-600 file:text-white file:rounded-full file:border-0 file:py-2 file:px-4 file:mr-4 hover:file:bg-indigo-700 cursor-pointer"></div>
             <button onclick="saveAnnouncement()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 rounded w-full font-bold">Yayınla</button>
             <button onclick="closeModal('announcement-modal')" class="mt-2 text-slate-400 w-full text-center hover:text-white p-2">İptal</button>
         </div>
@@ -297,56 +242,81 @@
     </div>
 
     <script>
-        // GÜNCELLENEN KISIM: Şifreler 123456 yapıldı
+        // --- 1. TEST KULLANICILARI ---
         const DEFAULT_USERS = [
             { id: 1, username: 'admin', password: '123456', full_name: 'Site Yöneticisi', role: 'admin', block: 'A', flat_no: 'Yönetim' },
             { id: 2, username: 'personel', password: '123456', full_name: 'Ahmet Görevli', role: 'staff', block: 'A', flat_no: 'Kapıcı' },
-            { id: 3, username: 'sakin', password: '123456', full_name: 'Mehmet Yılmaz', role: 'resident', block: 'B', flat_no: '5' }
+            { id: 3, username: 'sakin', password: '123456', full_name: 'Mehmet Yılmaz', role: 'resident', block: 'B', flat_no: '5' },
+            // Yeni Test Kullanıcıları
+            { id: 4, username: 'ayse', password: '123456', full_name: 'Ayşe Tekin', role: 'resident', block: 'C', flat_no: '12' },
+            { id: 5, username: 'ali', password: '123456', full_name: 'Ali Yıldız', role: 'resident', block: 'D', flat_no: '8' },
+            { id: 6, username: 'fatma', password: '123456', full_name: 'Fatma Demir', role: 'resident', block: 'A', flat_no: '3' },
+            { id: 7, username: 'veli', password: '123456', full_name: 'Veli Can', role: 'resident', block: 'B', flat_no: '1' }
         ];
 
+        // --- 2. VARSAYILAN DUYURULAR ---
         const DEFAULT_ANNOUNCEMENTS = [
-            { id: 1, title: 'Hoşgeldiniz', content: 'Yeni site yönetim sistemimiz yayında.', priority: 'Normal', created_by: 1, created_at: new Date().toISOString(), photo_url: null }
+            { id: 1, title: 'Hoşgeldiniz', content: 'Yeni site yönetim sistemimiz yayında. Kullanıcı adınız ve şifrenizle giriş yapabilirsiniz.', priority: 'Normal', created_by: 1, created_at: new Date().toISOString(), photo_url: null },
+            { id: 2, title: 'Su Kesintisi', content: 'Belediye çalışması nedeniyle yarın 12:00 - 15:00 arası su kesintisi olacaktır.', priority: 'Önemli', created_by: 1, created_at: new Date(Date.now() - 86400000).toISOString(), photo_url: null }
+        ];
+
+        // --- 3. VARSAYILAN ŞİKAYETLER (Canlı Hissettirmek İçin) ---
+        const DEFAULT_COMPLAINTS = [
+            { id: 101, user_id: 4, title: 'Koridor lambası yanmıyor', description: 'C Blok 3. kat koridor lambası patlak, karanlık oluyor.', category: 'Elektrik', priority: 'Normal', status: 'Çözüldü', is_private: 0, created_at: new Date(Date.now() - 172800000).toISOString(), photos: [] }, // 2 gün önce
+            { id: 102, user_id: 5, title: 'Asansör gürültüsü', description: 'D Blok asansörü 4. kata gelirken sürtünme sesi çıkarıyor.', category: 'Asansör', priority: 'Önemli', status: 'İnceleniyor', is_private: 0, created_at: new Date(Date.now() - 43200000).toISOString(), photos: [] }, // 12 saat önce
+            { id: 103, user_id: 3, title: 'Bahçe kapısı kapanmıyor', description: 'Otomatik kapı sensörü bazen algılamıyor.', category: 'Genel', priority: 'Normal', status: 'Yeni', is_private: 0, created_at: new Date(Date.now() - 3600000).toISOString(), photos: [] } // 1 saat önce
+        ];
+
+        // --- 4. VARSAYILAN MESAJLAR ---
+        const DEFAULT_MESSAGES = [
+            { id: 1, sender_id: 2, receiver_id: 1, content: 'Başkanım, A blok girişindeki temizlik tamamlandı.', created_at: new Date(Date.now() - 3600000).toISOString() },
+            { id: 2, sender_id: 1, receiver_id: 2, content: 'Eline sağlık Ahmet, B bloğa geçebilirsin.', created_at: new Date(Date.now() - 1800000).toISOString() }
         ];
 
         const DB = {
-            getUsers: () => {
-                // Eğer veri varsa ve eski şifreliyse güncellememiz gerekebilir ama basitlik için direkt alıyoruz.
-                // Kullanıcı tarayıcıyı temizlemediyse eski veri gelebilir.
-                // Bu demo için her seferinde varsayılanları üzerine yazmak en temizi olurdu ama
-                // kullanıcı eklediyseniz kaybolmasın diye sadece yoksa ekliyoruz.
-                return JSON.parse(localStorage.getItem('users')) || DEFAULT_USERS;
-            },
+            getUsers: () => JSON.parse(localStorage.getItem('users')) || DEFAULT_USERS,
             setUsers: (data) => localStorage.setItem('users', JSON.stringify(data)),
-            getComplaints: () => JSON.parse(localStorage.getItem('complaints')) || [],
+            
+            getComplaints: () => JSON.parse(localStorage.getItem('complaints')) || DEFAULT_COMPLAINTS,
             setComplaints: (data) => localStorage.setItem('complaints', JSON.stringify(data)),
+            
             getAnnouncements: () => JSON.parse(localStorage.getItem('announcements')) || DEFAULT_ANNOUNCEMENTS,
             setAnnouncements: (data) => localStorage.setItem('announcements', JSON.stringify(data)),
-            getMessages: () => JSON.parse(localStorage.getItem('messages')) || [],
+            
+            getMessages: () => JSON.parse(localStorage.getItem('messages')) || DEFAULT_MESSAGES,
             setMessages: (data) => localStorage.setItem('messages', JSON.stringify(data)),
+            
             getNotes: () => JSON.parse(localStorage.getItem('notes')) || [],
             setNotes: (data) => localStorage.setItem('notes', JSON.stringify(data)),
+            
             getNotifications: () => JSON.parse(localStorage.getItem('notifications')) || [],
             setNotifications: (data) => localStorage.setItem('notifications', JSON.stringify(data))
         };
-        
-        // ÖNEMLİ: Daha önce çalıştırıldıysa eski şifreleri "123456" ile güncelle (Sadece default userlar için)
-        // Bu blok, eski localStorage verisi varsa bile admin/personel/sakin şifrelerini düzeltir.
+
+        // Eğer local storage boşsa, default verileri yükle
+        if(!localStorage.getItem('users')) DB.setUsers(DEFAULT_USERS);
+        if(!localStorage.getItem('complaints')) DB.setComplaints(DEFAULT_COMPLAINTS);
+        if(!localStorage.getItem('announcements')) DB.setAnnouncements(DEFAULT_ANNOUNCEMENTS);
+        if(!localStorage.getItem('messages')) DB.setMessages(DEFAULT_MESSAGES);
+
+        // Kullanıcı şifre güncelleme (Eski kullanıcılar için)
         if(localStorage.getItem('users')) {
             let existingUsers = JSON.parse(localStorage.getItem('users'));
             let updated = false;
-            existingUsers = existingUsers.map(u => {
-                if(['admin', 'personel', 'sakin'].includes(u.username) && u.password !== '123456') {
-                    u.password = '123456';
+            // Yeni kullanıcıları da listeye ekle (eğer yoksa)
+            DEFAULT_USERS.forEach(defUser => {
+                if(!existingUsers.find(u => u.username === defUser.username)) {
+                    existingUsers.push(defUser);
                     updated = true;
                 }
+            });
+            // Şifreleri güncelle
+            existingUsers = existingUsers.map(u => {
+                if(u.password !== '123456') { u.password = '123456'; updated = true; }
                 return u;
             });
             if(updated) localStorage.setItem('users', JSON.stringify(existingUsers));
-        } else {
-            DB.setUsers(DEFAULT_USERS);
         }
-
-        if(!localStorage.getItem('announcements')) DB.setAnnouncements(DEFAULT_ANNOUNCEMENTS);
 
         let currentUser = null;
         let activeComplaintId = null;
@@ -364,12 +334,10 @@
                 overlay.classList.add('hidden');
             }
         }
-
         function toggleNotifications() { document.getElementById('notif-dropdown').classList.toggle('hidden'); }
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
         function showImage(src) { document.getElementById('gallery-img').src = src; openModal('gallery-modal'); }
-        
         function showToast(msg, type) { 
             const div = document.createElement('div'); 
             div.className = `${type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white px-6 py-3 rounded shadow-lg toast flex items-center gap-2 pointer-events-auto`; 
@@ -377,59 +345,43 @@
             document.getElementById('toast-container').appendChild(div); 
             setTimeout(() => div.remove(), 3000); 
         }
-
         function createNotification(userId, msg) {
             const notifs = DB.getNotifications();
             notifs.push({ id: Date.now(), user_id: userId, message: msg, is_read: false, created_at: new Date().toISOString() });
             DB.setNotifications(notifs);
         }
 
-        // GÜNCELLENEN KISIM: Login Kontrolü
         function login() {
             const u = document.getElementById('log-user').value.trim();
-            const p = document.getElementById('log-pass').value.trim(); // Şifreyi al
-            
+            const p = document.getElementById('log-pass').value.trim();
             const users = DB.getUsers();
             const found = users.find(x => x.username === u);
-
             if(found) {
-                // Şifre kontrolü ekledik
                 if(found.password === p) {
                     currentUser = found;
                     initApp();
                     showToast('Giriş Başarılı', 'success');
-                } else {
-                    showToast('Hatalı şifre! (123456 deneyin)', 'error');
-                }
-            } else {
-                showToast('Kullanıcı bulunamadı', 'error');
-            }
+                } else { showToast('Hatalı şifre! (123456 deneyin)', 'error'); }
+            } else { showToast('Kullanıcı bulunamadı', 'error'); }
         }
-
         function logout() { 
             currentUser = null;
             document.getElementById('dashboard-layout').classList.add('hidden');
             document.getElementById('login-screen').classList.remove('hidden');
             location.reload(); 
         }
-
         function initApp() {
             document.getElementById('login-screen').classList.add('hidden');
             document.getElementById('dashboard-layout').classList.remove('hidden');
             document.getElementById('u-name').innerText = currentUser.full_name;
-            
-            const roleText = currentUser.role === 'resident' 
-                ? `Site Sakini (${currentUser.block || '-'} Blok)` 
-                : (currentUser.role === 'admin' ? 'Yönetici' : 'Personel');
+            const roleText = currentUser.role === 'resident' ? `Site Sakini (${currentUser.block || '-'} Blok)` : (currentUser.role === 'admin' ? 'Yönetici' : 'Personel');
             document.getElementById('u-role').innerText = roleText;
-            
             if(currentUser.role === 'admin') {
                 document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
                 document.querySelectorAll('.staff-admin-only').forEach(el => el.classList.remove('hidden'));
             } else if (currentUser.role === 'staff') {
                 document.querySelectorAll('.staff-admin-only').forEach(el => el.classList.remove('hidden'));
             }
-
             loadNotifications();
             nav('home');
         }
@@ -439,11 +391,9 @@
                 const sidebar = document.getElementById('main-sidebar');
                 if(!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
             }
-
             const container = document.getElementById('content-area');
             const title = document.getElementById('page-title');
             container.innerHTML = '';
-            
             if(page === 'home') renderHome(container, title);
             else if(page === 'complaints') renderComplaints(container, title);
             else if(page === 'stats') renderStats(container, title);
@@ -456,34 +406,14 @@
             t.innerText = 'Ana Sayfa';
             const announcements = DB.getAnnouncements();
             announcements.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
-            
             const emergency = announcements.find(d => d.priority === 'Acil');
-            
             if(emergency) {
                 document.getElementById('emergency-bar').classList.remove('hidden');
                 document.getElementById('emergency-text').innerText = emergency.title + ": " + emergency.content.substring(0, 50) + "...";
-            } else { 
-                document.getElementById('emergency-bar').classList.add('hidden'); 
-            }
-
-            let bannerSubText = currentUser.role === 'resident' 
-                ? `${currentUser.block || '?'} Blok, Daire: ${currentUser.flat_no || 'Belirtilmemiş'}` 
-                : "Aksaray Konutları Yönetim Paneli";
-
-            let html = `
-            <div class="grid grid-cols-1 gap-6">
-                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 md:p-8 rounded-xl shadow-lg text-white">
-                    <h3 class="text-2xl md:text-3xl font-bold mb-2">Hoşgeldiniz, ${currentUser.full_name}</h3>
-                    <p class="opacity-90 text-base md:text-lg">${bannerSubText}</p>
-                </div>
-                
-                <h3 class="text-xl font-bold text-white mt-4 border-l-4 border-indigo-500 pl-3">Son Duyurular</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
-            
-            announcements.forEach(d => {
-                html += generateAnnouncementCard(d);
-            });
-            
+            } else { document.getElementById('emergency-bar').classList.add('hidden'); }
+            let bannerSubText = currentUser.role === 'resident' ? `${currentUser.block || '?'} Blok, Daire: ${currentUser.flat_no || 'Belirtilmemiş'}` : "Aksaray Konutları Yönetim Paneli";
+            let html = `<div class="grid grid-cols-1 gap-6"><div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 md:p-8 rounded-xl shadow-lg text-white"><h3 class="text-2xl md:text-3xl font-bold mb-2">Hoşgeldiniz, ${currentUser.full_name}</h3><p class="opacity-90 text-base md:text-lg">${bannerSubText}</p></div><h3 class="text-xl font-bold text-white mt-4 border-l-4 border-indigo-500 pl-3">Son Duyurular</h3><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">`;
+            announcements.forEach(d => { html += generateAnnouncementCard(d); });
             html += `</div></div>`;
             c.innerHTML = html;
         }
@@ -507,22 +437,7 @@
                 default: styleConfig = { bg: 'bg-gradient-to-br from-slate-700 to-slate-800', icon: 'fa-bullhorn', border: 'border-slate-600', pulse: '' };
             }
             const imgHtml = d.photo_url ? `<div class="h-40 w-full bg-cover bg-center rounded-t-xl mb-3" style="background-image: url('${d.photo_url}')"></div>` : '';
-
-            return `
-            <div class="relative group ${styleConfig.bg} p-0 rounded-xl shadow-lg transform transition hover:-translate-y-2 hover:shadow-2xl ${styleConfig.pulse} border ${styleConfig.border} cursor-pointer flex flex-col overflow-hidden" onclick="openAnnouncementDetail(${d.id})">
-                ${allowDelete && currentUser.role !== 'resident' ? `<button onclick="deleteAnnouncement(${d.id}, event)" class="absolute top-2 right-2 bg-black/50 text-white hover:bg-red-600 rounded-full w-8 h-8 flex items-center justify-center z-20 transition p-2"><i class="fas fa-trash"></i></button>` : ''}
-                ${imgHtml}
-                <div class="p-6 pt-2 flex-1 flex flex-col">
-                    ${!d.photo_url ? `<div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fas ${styleConfig.icon} text-lg text-white"></i></div>` : ''}
-                    <div class="flex justify-between items-start mb-2"><span class="text-xs font-bold uppercase tracking-wider bg-black/30 px-2 py-1 rounded text-white">${d.priority}</span></div>
-                    <h4 class="font-bold text-xl text-white mb-2 leading-tight">${d.title}</h4>
-                    <p class="text-white/80 text-sm line-clamp-3 leading-relaxed mb-4">${d.content}</p>
-                    <div class="mt-auto">
-                        <div class="text-center text-xs text-white/60 mb-2">${new Date(d.created_at).toLocaleDateString()}</div>
-                        <div class="text-center w-full bg-white/10 py-2 rounded text-xs font-bold text-white hover:bg-white/20 transition">OKU <i class="fas fa-arrow-right ml-1"></i></div>
-                    </div>
-                </div>
-            </div>`;
+            return `<div class="relative group ${styleConfig.bg} p-0 rounded-xl shadow-lg transform transition hover:-translate-y-2 hover:shadow-2xl ${styleConfig.pulse} border ${styleConfig.border} cursor-pointer flex flex-col overflow-hidden" onclick="openAnnouncementDetail(${d.id})">${allowDelete && currentUser.role !== 'resident' ? `<button onclick="deleteAnnouncement(${d.id}, event)" class="absolute top-2 right-2 bg-black/50 text-white hover:bg-red-600 rounded-full w-8 h-8 flex items-center justify-center z-20 transition p-2"><i class="fas fa-trash"></i></button>` : ''}${imgHtml}<div class="p-6 pt-2 flex-1 flex flex-col">${!d.photo_url ? `<div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center"><i class="fas ${styleConfig.icon} text-lg text-white"></i></div>` : ''}<div class="flex justify-between items-start mb-2"><span class="text-xs font-bold uppercase tracking-wider bg-black/30 px-2 py-1 rounded text-white">${d.priority}</span></div><h4 class="font-bold text-xl text-white mb-2 leading-tight">${d.title}</h4><p class="text-white/80 text-sm line-clamp-3 leading-relaxed mb-4">${d.content}</p><div class="mt-auto"><div class="text-center text-xs text-white/60 mb-2">${new Date(d.created_at).toLocaleDateString()}</div><div class="text-center w-full bg-white/10 py-2 rounded text-xs font-bold text-white hover:bg-white/20 transition">OKU <i class="fas fa-arrow-right ml-1"></i></div></div></div></div>`;
         }
 
         function openAnnouncementDetail(id) {
@@ -539,23 +454,19 @@
             if(d.photo_url) { imgEl.src = d.photo_url; imgEl.classList.remove('hidden'); placeEl.classList.add('hidden'); } else { imgEl.classList.add('hidden'); placeEl.classList.remove('hidden'); }
             openModal('announcement-detail-modal');
         }
-
         function saveAnnouncement() {
             const title = document.getElementById('an-title').value;
             const content = document.getElementById('an-content').value;
             const priority = document.getElementById('an-prio').value;
             const hasPhoto = document.getElementById('an-photo').files.length > 0;
             const photoUrl = hasPhoto ? `https://source.unsplash.com/random/800x600/?apartment,city&sig=${Math.random()}` : null;
-
             const list = DB.getAnnouncements();
             list.push({ id: Date.now(), title, content, priority, created_by: currentUser.id, created_at: new Date().toISOString(), photo_url: photoUrl });
             DB.setAnnouncements(list);
-            
             showToast('Duyuru yayınlandı', 'success');
             closeModal('announcement-modal');
             nav('announcements');
         }
-
         function deleteAnnouncement(id, event) {
             event.stopPropagation();
             if(confirm('Silinsin mi?')) {
@@ -570,57 +481,30 @@
         function renderComplaints(c, t) {
             t.innerText = 'Şikayet Yönetimi';
             const showButton = currentUser.role === 'resident' ? `<button onclick="openModal('complaint-modal')" class="ml-auto bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded font-bold text-sm shadow-lg shadow-indigo-500/30 w-full md:w-auto mt-2 md:mt-0"><i class="fas fa-plus"></i> Yeni Şikayet</button>` : '';
-            c.innerHTML = `
-            <div class="bg-slate-800 p-4 rounded mb-6 flex flex-col md:flex-row flex-wrap gap-4 items-stretch md:items-center border border-slate-700">
-                <input type="text" id="filter-search" placeholder="Ara..." class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-40">
-                <select id="filter-cat" class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-auto">
-                    <option value="">Tüm Kategoriler</option>
-                    <option value="Asansör">Asansör</option>
-                    <option value="Elektrik">Elektrik</option>
-                    <option value="Su">Su / Tesisat</option>
-                    <option value="Temizlik">Temizlik</option>
-                </select>
-                <select id="filter-status" class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-auto">
-                    <option value="">Tüm Durumlar</option>
-                    <option value="Yeni">Yeni</option>
-                    <option value="Çözüldü">Çözüldü</option>
-                </select>
-                <button onclick="fetchComplaints()" class="bg-slate-600 hover:bg-slate-500 text-white px-4 py-2 rounded text-sm w-full md:w-auto"><i class="fas fa-search"></i> Filtrele</button>
-                ${showButton}
-            </div>
-            <div id="complaint-list" class="space-y-4 pb-12"></div>`;
+            c.innerHTML = `<div class="bg-slate-800 p-4 rounded mb-6 flex flex-col md:flex-row flex-wrap gap-4 items-stretch md:items-center border border-slate-700"><input type="text" id="filter-search" placeholder="Ara..." class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-40"><select id="filter-cat" class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-auto"><option value="">Tüm Kategoriler</option><option value="Asansör">Asansör</option><option value="Elektrik">Elektrik</option><option value="Su">Su / Tesisat</option><option value="Temizlik">Temizlik</option></select><select id="filter-status" class="p-3 bg-slate-700 border border-slate-600 rounded text-white text-sm w-full md:w-auto"><option value="">Tüm Durumlar</option><option value="Yeni">Yeni</option><option value="Çözüldü">Çözüldü</option></select><button onclick="fetchComplaints()" class="bg-slate-600 hover:bg-slate-500 text-white px-4 py-2 rounded text-sm w-full md:w-auto"><i class="fas fa-search"></i> Filtrele</button>${showButton}</div><div id="complaint-list" class="space-y-4 pb-12"></div>`;
             fetchComplaints();
         }
-
         function fetchComplaints() {
             const search = document.getElementById('filter-search').value.toLowerCase();
             const cat = document.getElementById('filter-cat').value;
             const status = document.getElementById('filter-status').value;
-
             let data = DB.getComplaints();
             const users = DB.getUsers();
             data = data.map(c => {
                 const u = users.find(x => x.id === c.user_id) || { full_name: 'Bilinmeyen', block: '?', flat_no: '?' };
                 return { ...c, full_name: u.full_name, block: u.block, flat_no: u.flat_no };
             });
-
-            if(currentUser.role === 'resident') {
-                data = data.filter(c => c.user_id === currentUser.id || c.is_private === 0);
-            }
-
+            if(currentUser.role === 'resident') { data = data.filter(c => c.user_id === currentUser.id || c.is_private === 0); }
             data = data.filter(c => {
                 const matchesSearch = c.title.toLowerCase().includes(search) || c.description.toLowerCase().includes(search);
                 const matchesCat = cat ? c.category === cat : true;
                 const matchesStatus = status ? c.status === status : true;
                 return matchesSearch && matchesCat && matchesStatus;
             });
-
             data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
-
             const list = document.getElementById('complaint-list');
             list.innerHTML = '';
             if(data.length === 0) list.innerHTML = '<div class="text-center text-slate-500">Kayıt bulunamadı.</div>';
-
             data.forEach(item => {
                 const sColor = {'Yeni':'bg-blue-600','Çözüldü':'bg-green-600','İnceleniyor':'bg-yellow-600','Reddedildi':'bg-red-600'}[item.status];
                 let galleryHtml = '';
@@ -629,51 +513,15 @@
                     item.photos.forEach(p => galleryHtml += `<img src="${p}" onclick="showImage('${p}')" class="h-16 w-16 object-cover rounded border border-slate-600 cursor-pointer hover:opacity-80 flex-shrink-0">`);
                     galleryHtml += `</div>`;
                 }
-
                 let actions = '';
                 if(currentUser.role !== 'resident') {
-                    actions = `<div class="mt-4 pt-3 border-t border-slate-700 flex flex-wrap gap-2 items-center">
-                        <div class="flex items-center gap-1 w-full md:w-auto mb-2 md:mb-0">
-                            <select id="status-select-${item.id}" class="text-xs bg-slate-900 border border-slate-600 text-white rounded p-2 flex-1 md:flex-none">
-                                <option value="" disabled selected>Durum Seç</option>
-                                <option value="İnceleniyor">İnceleniyor</option>
-                                <option value="Çözüldü">Çözüldü</option>
-                                <option value="Reddedildi">Reddet</option>
-                            </select>
-                            <button onclick="updateStatus(${item.id})" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs">Onayla</button>
-                        </div>
-                        <button onclick="openNoteModal(${item.id})" class="text-xs bg-slate-600 hover:bg-slate-500 text-white px-3 py-2 rounded w-full md:w-auto">Notlar</button>
-                        ${currentUser.role === 'admin' ? `<button onclick="deleteComplaint(${item.id})" class="ml-auto text-xs text-red-400 hover:text-red-300 w-full md:w-auto md:text-right mt-2 md:mt-0 p-2">Sil</button>` : ''}
-                    </div>`;
+                    actions = `<div class="mt-4 pt-3 border-t border-slate-700 flex flex-wrap gap-2 items-center"><div class="flex items-center gap-1 w-full md:w-auto mb-2 md:mb-0"><select id="status-select-${item.id}" class="text-xs bg-slate-900 border border-slate-600 text-white rounded p-2 flex-1 md:flex-none"><option value="" disabled selected>Durum Seç</option><option value="İnceleniyor">İnceleniyor</option><option value="Çözüldü">Çözüldü</option><option value="Reddedildi">Reddet</option></select><button onclick="updateStatus(${item.id})" class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs">Onayla</button></div><button onclick="openNoteModal(${item.id})" class="text-xs bg-slate-600 hover:bg-slate-500 text-white px-3 py-2 rounded w-full md:w-auto">Notlar</button>${currentUser.role === 'admin' ? `<button onclick="deleteComplaint(${item.id})" class="ml-auto text-xs text-red-400 hover:text-red-300 w-full md:w-auto md:text-right mt-2 md:mt-0 p-2">Sil</button>` : ''}</div>`;
                 } else {
-                    actions = `<div class="mt-4 pt-3 border-t border-slate-700 flex justify-end gap-2">
-                        <button onclick="deleteComplaint(${item.id})" class="text-xs text-red-400 hover:text-red-300 p-2">Sil</button>
-                        <button onclick="openNoteModal(${item.id})" class="text-xs bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded">Notlar/Cevap</button>
-                    </div>`;
+                    actions = `<div class="mt-4 pt-3 border-t border-slate-700 flex justify-end gap-2"><button onclick="deleteComplaint(${item.id})" class="text-xs text-red-400 hover:text-red-300 p-2">Sil</button><button onclick="openNoteModal(${item.id})" class="text-xs bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded">Notlar/Cevap</button></div>`;
                 }
-
-                list.innerHTML += `
-                <div class="bg-slate-800 p-4 md:p-5 rounded border border-slate-700 shadow-md transition hover:border-slate-500">
-                    <div class="flex justify-between items-start">
-                        <div class="flex flex-wrap gap-2 items-center mb-2">
-                            <span class="${sColor} text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">${item.status}</span>
-                            <span class="text-xs text-slate-500">${new Date(item.created_at).toLocaleDateString()}</span>
-                            ${item.priority === 'Acil' ? '<span class="text-xs text-red-500 font-bold">ACİL</span>' : ''}
-                            ${item.is_private ? '<span class="text-xs text-slate-500">Özel</span>' : ''}
-                        </div>
-                        <div class="text-right text-xs text-slate-400">
-                            <div class="font-bold text-slate-200">${item.full_name}</div>
-                            <div>${item.block || '?'} Blok, No: ${item.flat_no}</div>
-                        </div>
-                    </div>
-                    <h3 class="font-bold text-lg text-white break-words">${item.title}</h3>
-                    <p class="text-slate-300 text-sm mt-1 whitespace-pre-wrap break-words">${item.description}</p>
-                    ${galleryHtml}
-                    ${actions}
-                </div>`;
+                list.innerHTML += `<div class="bg-slate-800 p-4 md:p-5 rounded border border-slate-700 shadow-md transition hover:border-slate-500"><div class="flex justify-between items-start"><div class="flex flex-wrap gap-2 items-center mb-2"><span class="${sColor} text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">${item.status}</span><span class="text-xs text-slate-500">${new Date(item.created_at).toLocaleDateString()}</span>${item.priority === 'Acil' ? '<span class="text-xs text-red-500 font-bold">ACİL</span>' : ''}${item.is_private ? '<span class="text-xs text-slate-500">Özel</span>' : ''}</div><div class="text-right text-xs text-slate-400"><div class="font-bold text-slate-200">${item.full_name}</div><div>${item.block || '?'} Blok, No: ${item.flat_no}</div></div></div><h3 class="font-bold text-lg text-white break-words">${item.title}</h3><p class="text-slate-300 text-sm mt-1 whitespace-pre-wrap break-words">${item.description}</p>${galleryHtml}${actions}</div>`;
             });
         }
-
         function submitComplaint() {
             const title = document.getElementById('c-title').value;
             const description = document.getElementById('c-desc').value;
@@ -683,26 +531,18 @@
             const fileInput = document.getElementById('c-photos');
             let photos = [];
             if(fileInput.files.length > 0) {
-                for(let i=0; i<fileInput.files.length; i++) {
-                    photos.push(`https://source.unsplash.com/random/200x200/?repair,tool&sig=${Math.random()}`);
-                }
+                for(let i=0; i<fileInput.files.length; i++) { photos.push(`https://source.unsplash.com/random/200x200/?repair,tool&sig=${Math.random()}`); }
             }
-
             const list = DB.getComplaints();
             list.push({ id: Date.now(), user_id: currentUser.id, title, description, category, priority, is_private, status: 'Yeni', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), photos: photos });
             DB.setComplaints(list);
-
             const users = DB.getUsers();
-            users.filter(u => u.role === 'admin' || u.role === 'staff').forEach(s => {
-                createNotification(s.id, `Yeni Şikayet: ${title} (${category})`);
-            });
-
+            users.filter(u => u.role === 'admin' || u.role === 'staff').forEach(s => { createNotification(s.id, `Yeni Şikayet: ${title} (${category})`); });
             showToast('Şikayet oluşturuldu', 'success');
             closeModal('complaint-modal');
             document.getElementById('form-complaint').reset();
             if(document.getElementById('page-title').innerText.includes('Şikayet')) fetchComplaints();
         }
-
         function updateStatus(id) {
             const selectEl = document.getElementById(`status-select-${id}`);
             const status = selectEl.value;
@@ -718,7 +558,6 @@
                 fetchComplaints();
             }
         }
-
         function deleteComplaint(id) {
             if(confirm('Silinsin mi?')) {
                 let list = DB.getComplaints();
@@ -733,14 +572,8 @@
             activeComplaintId = id;
             openModal('note-modal');
             renderNotes();
-            if(currentUser.role === 'resident') {
-                document.getElementById('note-input-area').classList.add('hidden');
-            } else {
-                document.getElementById('note-input-area').classList.remove('hidden');
-                document.getElementById('note-text').value = '';
-            }
+            if(currentUser.role === 'resident') { document.getElementById('note-input-area').classList.add('hidden'); } else { document.getElementById('note-input-area').classList.remove('hidden'); document.getElementById('note-text').value = ''; }
         }
-
         function renderNotes() {
             const allNotes = DB.getNotes().filter(n => n.complaint_id === activeComplaintId);
             const users = DB.getUsers();
@@ -754,7 +587,6 @@
                 list.innerHTML += `<div class="bg-slate-700 p-2 rounded text-sm"><div class="flex justify-between text-xs text-slate-400 mb-1"><span>${u.full_name} (${u.role})</span><div class="flex items-center"><span>${new Date(n.created_at).toLocaleDateString()}</span>${deleteBtn}</div></div><div class="text-white break-words">${n.note}</div></div>`;
             });
         }
-
         function saveNote() {
             const note = document.getElementById('note-text').value;
             if(!note) return;
@@ -767,7 +599,6 @@
             renderNotes();
             document.getElementById('note-text').value = '';
         }
-
         function deleteNote(id) {
             if(!confirm('Silinsin mi?')) return;
             let notes = DB.getNotes();
@@ -790,21 +621,7 @@
                 const u = users.find(x => x.id === c.user_id);
                 if(u && u.block) blockCounts[u.block] = (blockCounts[u.block] || 0) + 1;
             });
-
-            c.innerHTML = `
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Toplam Şikayet</div><div class="text-4xl font-bold text-indigo-400">${total}</div></div>
-                <div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Örnek Veri Modu</div><div class="text-sm text-green-400 mt-2">Bu veriler tarayıcıda oluşturulmuştur.</div></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Kategori Dağılımı</h4><div class="relative h-64 w-full"><canvas id="chartCat"></canvas></div></div>
-                <div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Durum Analizi</h4><div class="relative h-64 w-full"><canvas id="chartStatus"></canvas></div></div>
-            </div>
-            <div class="bg-slate-800 p-6 rounded border border-slate-700 mb-6">
-                <h4 class="mb-4 font-bold text-slate-300">Blok Bazlı Şikayet Yoğunluğu</h4>
-                <div class="relative h-64 w-full"><canvas id="chartHeat"></canvas></div>
-            </div>`;
-
+            c.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Toplam Şikayet</div><div class="text-4xl font-bold text-indigo-400">${total}</div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Örnek Veri Modu</div><div class="text-sm text-green-400 mt-2">Bu veriler tarayıcıda oluşturulmuştur.</div></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Kategori Dağılımı</h4><div class="relative h-64 w-full"><canvas id="chartCat"></canvas></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Durum Analizi</h4><div class="relative h-64 w-full"><canvas id="chartStatus"></canvas></div></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700 mb-6"><h4 class="mb-4 font-bold text-slate-300">Blok Bazlı Şikayet Yoğunluğu</h4><div class="relative h-64 w-full"><canvas id="chartHeat"></canvas></div></div>`;
             setTimeout(() => {
                 new Chart(document.getElementById('chartCat'), { type: 'bar', data: { labels: Object.keys(catCounts), datasets: [{ label:'Adet', data: Object.values(catCounts), backgroundColor: '#6366f1' }] }, options: { maintainAspectRatio: false } }); 
                 new Chart(document.getElementById('chartStatus'), { type: 'doughnut', data: { labels: Object.keys(statusCounts), datasets: [{ data: Object.values(statusCounts), backgroundColor: ['#3b82f6','#22c55e','#eab308','#ef4444'] }] }, options: { maintainAspectRatio: false } });
@@ -824,44 +641,16 @@
                 return 0;
             });
             const arrow = sortConfig.direction === 'asc' ? '↑' : '↓';
-            let html = `
-            <button onclick="openUserModal()" class="mb-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold"><i class="fas fa-plus"></i> Yeni Kullanıcı</button>
-            <div class="overflow-x-auto rounded-lg border border-slate-700">
-                <table class="w-full text-left text-sm text-slate-400 min-w-[600px]">
-                    <thead class="bg-slate-800 text-slate-200 uppercase">
-                        <tr>
-                            <th class="p-4 sortable" onclick="sortUsers('full_name')">Ad Soyad ${sortConfig.key==='full_name'?arrow:''}</th>
-                            <th class="p-4 sortable" onclick="sortUsers('username')">Kullanıcı Adı ${sortConfig.key==='username'?arrow:''}</th>
-                            <th class="p-4">Rol</th>
-                            <th class="p-4">Blok</th>
-                            <th class="p-4">Daire</th>
-                            <th class="p-4 text-right">İşlem</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-700 bg-slate-850">`; 
-            allUsers.forEach(u => { 
-                html += `<tr>
-                    <td class="p-4 font-bold text-white">${u.full_name}</td>
-                    <td class="p-4">${u.username}</td>
-                    <td class="p-4"><span class="bg-slate-700 px-2 py-1 rounded text-xs uppercase">${u.role}</span></td>
-                    <td class="p-4 font-bold text-indigo-400">${u.block || '-'}</td>
-                    <td class="p-4">${u.flat_no || '-'}</td>
-                    <td class="p-4 text-right">
-                        <button onclick="editUser(${u.id})" class="text-blue-400 hover:text-white mr-3 p-2"><i class="fas fa-pencil-alt"></i></button>
-                        <button onclick="deleteUser(${u.id})" class="text-red-400 hover:text-white p-2"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>`; 
-            }); 
+            let html = `<button onclick="openUserModal()" class="mb-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-bold"><i class="fas fa-plus"></i> Yeni Kullanıcı</button><div class="overflow-x-auto rounded-lg border border-slate-700"><table class="w-full text-left text-sm text-slate-400 min-w-[600px]"><thead class="bg-slate-800 text-slate-200 uppercase"><tr><th class="p-4 sortable" onclick="sortUsers('full_name')">Ad Soyad ${sortConfig.key==='full_name'?arrow:''}</th><th class="p-4 sortable" onclick="sortUsers('username')">Kullanıcı Adı ${sortConfig.key==='username'?arrow:''}</th><th class="p-4">Rol</th><th class="p-4">Blok</th><th class="p-4">Daire</th><th class="p-4 text-right">İşlem</th></tr></thead><tbody class="divide-y divide-slate-700 bg-slate-850">`; 
+            allUsers.forEach(u => { html += `<tr><td class="p-4 font-bold text-white">${u.full_name}</td><td class="p-4">${u.username}</td><td class="p-4"><span class="bg-slate-700 px-2 py-1 rounded text-xs uppercase">${u.role}</span></td><td class="p-4 font-bold text-indigo-400">${u.block || '-'}</td><td class="p-4">${u.flat_no || '-'}</td><td class="p-4 text-right"><button onclick="editUser(${u.id})" class="text-blue-400 hover:text-white mr-3 p-2"><i class="fas fa-pencil-alt"></i></button><button onclick="deleteUser(${u.id})" class="text-red-400 hover:text-white p-2"><i class="fas fa-trash"></i></button></td></tr>`; }); 
             html += `</tbody></table></div>`;
             c.innerHTML = html;
         }
-
         function sortUsers(key) {
             if(sortConfig.key === key) sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';
             else { sortConfig.key = key; sortConfig.direction = 'asc'; }
             renderUsers(document.getElementById('content-area'), document.getElementById('page-title'));
         }
-
         function openUserModal(user = null) {
             document.getElementById('user-modal').classList.remove('hidden');
             const title = document.getElementById('user-modal-title');
@@ -885,7 +674,6 @@
                 document.getElementById('nu-block').value = 'A';
             }
         }
-        
         function editUser(id) { const user = DB.getUsers().find(u => u.id === id); if(user) openUserModal(user); }
         function saveUser() {
             const id = document.getElementById('nu-id').value;
@@ -899,15 +687,12 @@
             if(id) {
                 const idx = users.findIndex(x => x.id == id);
                 if(idx > -1) users[idx] = { ...users[idx], full_name, username, password, flat_no, role, block };
-            } else {
-                users.push({ id: Date.now(), full_name, username, password, flat_no, role, block });
-            }
+            } else { users.push({ id: Date.now(), full_name, username, password, flat_no, role, block }); }
             DB.setUsers(users);
             showToast('Kaydedildi', 'success');
             closeModal('user-modal');
             renderUsers(document.getElementById('content-area'), document.getElementById('page-title'));
         }
-
         function deleteUser(id) {
             if(confirm('Silinsin mi?')) {
                 let users = DB.getUsers();
@@ -928,34 +713,9 @@
                 const name = u ? u.full_name : 'Bilinmeyen';
                 contacts[contactId] = { name: name, lastMessage: m.content, id: contactId };
             });
-
-            c.innerHTML = `
-                <div class="flex flex-col md:flex-row h-[calc(100vh-160px)] md:h-[calc(100vh-150px)] bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
-                    <div class="w-full md:w-1/3 h-1/3 md:h-auto border-b md:border-b-0 md:border-r border-slate-700 flex flex-col bg-slate-850 shrink-0">
-                        <div class="p-3 md:p-4 border-b border-slate-700 flex justify-between items-center">
-                            <h3 class="font-bold text-white">Sohbetler</h3>
-                            <button onclick="startNewChat()" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded"><i class="fas fa-plus"></i> Yeni</button>
-                        </div>
-                        <div class="flex-1 overflow-y-auto smooth-scroll" id="contacts-list"></div>
-                    </div>
-                    <div class="flex-1 flex flex-col bg-slate-800 h-2/3 md:h-auto min-h-0">
-                        <div id="chat-header" class="p-3 md:p-4 border-b border-slate-700 bg-slate-850 font-bold text-white hidden shrink-0">
-                            <span id="chat-user-name"></span>
-                        </div>
-                        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col justify-center items-center smooth-scroll">
-                            <div class="text-slate-500 text-center"><i class="fas fa-comments text-4xl mb-2"></i><br>Bir sohbet seçin veya yeni başlatın.</div>
-                        </div>
-                        <div id="chat-input-area" class="p-3 md:p-4 bg-slate-850 border-t border-slate-700 hidden shrink-0">
-                            <div class="flex gap-2 items-center">
-                                <input type="text" id="msg-input" class="flex-1 bg-slate-700 rounded p-3 text-white border border-slate-600 focus:outline-none focus:border-indigo-500 text-sm md:text-base" placeholder="Mesaj yaz..." onkeydown="if(event.key === 'Enter') { event.preventDefault(); sendMessage(); }">
-                                <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 md:px-6 rounded font-bold transition"><i class="fas fa-paper-plane"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
+            c.innerHTML = `<div class="flex flex-col md:flex-row h-[calc(100vh-160px)] md:h-[calc(100vh-150px)] bg-slate-800 rounded-lg border border-slate-700 overflow-hidden"><div class="w-full md:w-1/3 h-1/3 md:h-auto border-b md:border-b-0 md:border-r border-slate-700 flex flex-col bg-slate-850 shrink-0"><div class="p-3 md:p-4 border-b border-slate-700 flex justify-between items-center"><h3 class="font-bold text-white">Sohbetler</h3><button onclick="startNewChat()" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white px-2 py-1 rounded"><i class="fas fa-plus"></i> Yeni</button></div><div class="flex-1 overflow-y-auto smooth-scroll" id="contacts-list"></div></div><div class="flex-1 flex flex-col bg-slate-800 h-2/3 md:h-auto min-h-0"><div id="chat-header" class="p-3 md:p-4 border-b border-slate-700 bg-slate-850 font-bold text-white hidden shrink-0"><span id="chat-user-name"></span></div><div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 flex flex-col justify-center items-center smooth-scroll"><div class="text-slate-500 text-center"><i class="fas fa-comments text-4xl mb-2"></i><br>Bir sohbet seçin veya yeni başlatın.</div></div><div id="chat-input-area" class="p-3 md:p-4 bg-slate-850 border-t border-slate-700 hidden shrink-0"><div class="flex gap-2 items-center"><input type="text" id="msg-input" class="flex-1 bg-slate-700 rounded p-3 text-white border border-slate-600 focus:outline-none focus:border-indigo-500 text-sm md:text-base" placeholder="Mesaj yaz..." onkeydown="if(event.key === 'Enter') { event.preventDefault(); sendMessage(); }"><button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 md:px-6 rounded font-bold transition"><i class="fas fa-paper-plane"></i></button></div></div></div></div>`;
             refreshContactList(contacts);
         }
-
         function refreshContactList(contacts) {
             const listEl = document.getElementById('contacts-list');
             if(!listEl) return;
@@ -963,19 +723,11 @@
             if(Object.keys(contacts).length === 0) html = '<div class="p-4 text-center text-slate-500 text-sm">Henüz sohbet yok.</div>';
             else {
                 for(const [key, val] of Object.entries(contacts)) {
-                    html += `
-                    <div onclick="selectChat(${val.id}, '${val.name}')" class="p-3 md:p-4 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white shrink-0">${val.name.charAt(0)}</div>
-                        <div class="min-w-0">
-                            <div class="font-bold text-sm text-white truncate">${val.name}</div>
-                            <div class="text-xs text-slate-400 truncate">${val.lastMessage}</div>
-                        </div>
-                    </div>`;
+                    html += `<div onclick="selectChat(${val.id}, '${val.name}')" class="p-3 md:p-4 border-b border-slate-700 cursor-pointer hover:bg-slate-700 transition flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white shrink-0">${val.name.charAt(0)}</div><div class="min-w-0"><div class="font-bold text-sm text-white truncate">${val.name}</div><div class="text-xs text-slate-400 truncate">${val.lastMessage}</div></div></div>`;
                 }
             }
             listEl.innerHTML = html;
         }
-
         function selectChat(id, name) {
             currentChatUser = { id, name };
             document.getElementById('chat-header').classList.remove('hidden');
@@ -987,18 +739,11 @@
             const msgs = DB.getMessages().filter(m => (m.sender_id === currentUser.id && m.receiver_id === id) || (m.sender_id === id && m.receiver_id === currentUser.id)).sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
             msgs.forEach(m => {
                 const isMe = m.sender_id === currentUser.id;
-                const bubble = `
-                <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
-                    <div class="${isMe ? 'bg-indigo-600 rounded-br-none' : 'bg-slate-700 rounded-bl-none'} p-3 rounded-2xl max-w-[85%] md:max-w-[70%] shadow-md">
-                        <div class="text-sm break-words">${m.content}</div>
-                        <div class="text-[10px] text-right mt-1 opacity-70">${new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
-                    </div>
-                </div>`;
+                const bubble = `<div class="flex ${isMe ? 'justify-end' : 'justify-start'}"><div class="${isMe ? 'bg-indigo-600 rounded-br-none' : 'bg-slate-700 rounded-bl-none'} p-3 rounded-2xl max-w-[85%] md:max-w-[70%] shadow-md"><div class="text-sm break-words">${m.content}</div><div class="text-[10px] text-right mt-1 opacity-70">${new Date(m.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div></div></div>`;
                 msgArea.innerHTML += bubble;
             });
             msgArea.scrollTop = msgArea.scrollHeight;
         }
-
         function startNewChat() {
             const users = DB.getUsers();
             let targets = [];
@@ -1009,7 +754,6 @@
             targets.forEach(u => select.innerHTML += `<option value="${u.id}">${u.full_name}</option>`);
             openModal('new-chat-modal');
         }
-
         function confirmNewChat() {
             const select = document.getElementById('new-chat-user');
             const id = parseInt(select.value);
@@ -1018,7 +762,6 @@
             closeModal('new-chat-modal');
             selectChat(id, name);
         }
-
         function sendMessage() {
             const content = document.getElementById('msg-input').value.trim();
             if(!content || !currentChatUser) return;
@@ -1042,10 +785,7 @@
             notifs.forEach(n => {
                 let clickAction = '';
                 if(n.message.toLowerCase().includes('mesaj')) clickAction = `onclick="nav('messages')"`;
-                list.innerHTML += `<div class="p-3 border-b border-slate-700 ${!n.is_read ? 'bg-slate-700/50' : ''} flex justify-between items-center cursor-pointer hover:bg-slate-700" ${clickAction}>
-                    <span class="text-sm">${n.message}</span>
-                    <button onclick="deleteNotification(${n.id}, event)" class="text-slate-500 hover:text-red-400 p-2"><i class="fas fa-times"></i></button>
-                </div>`;
+                list.innerHTML += `<div class="p-3 border-b border-slate-700 ${!n.is_read ? 'bg-slate-700/50' : ''} flex justify-between items-center cursor-pointer hover:bg-slate-700" ${clickAction}><span class="text-sm">${n.message}</span><button onclick="deleteNotification(${n.id}, event)" class="text-slate-500 hover:text-red-400 p-2"><i class="fas fa-times"></i></button></div>`;
             });
         }
         
@@ -1070,20 +810,13 @@
             DB.setNotifications(notifs);
             loadNotifications();
         }
-
         function changePassword() {
             const p = document.getElementById('new-password-input').value;
             if(!p) return showToast('Şifre giriniz', 'error');
             let users = DB.getUsers();
             const idx = users.findIndex(u => u.id === currentUser.id);
-            if(idx > -1) {
-                users[idx].password = p;
-                DB.setUsers(users);
-                showToast('Şifre güncellendi', 'success');
-                closeModal('password-modal');
-            }
+            if(idx > -1) { users[idx].password = p; DB.setUsers(users); showToast('Şifre güncellendi', 'success'); closeModal('password-modal'); }
         }
-        
         window.onclick = function(e) { if (!e.target.matches('.fa-bell') && !e.target.closest('#notif-dropdown')) document.getElementById('notif-dropdown').classList.add('hidden'); }
     </script>
 </body>
