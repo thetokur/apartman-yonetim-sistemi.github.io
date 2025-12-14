@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aksaray Konutları</title>
+    <title>Aksaray Konutları - Güvenli Giriş</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,7 +24,6 @@
         ::-webkit-scrollbar-track { background: #1e293b; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
         
-        /* Mobil için pürüzsüz kaydırma */
         .smooth-scroll { -webkit-overflow-scrolling: touch; }
         
         .toast { animation: slideIn 0.3s ease-out forwards; }
@@ -46,8 +45,7 @@
         <i class="fas fa-exclamation-triangle mr-2 text-yellow-300"></i> <span id="emergency-text" class="uppercase tracking-wider text-sm md:text-base"></span>
     </div>
 
-    <div id="toast-container" class="fixed top-16 right-5 md:top-5 md:right-5 z-[70] flex flex-col gap-2 w-[90%] md:w-auto pointer-events-none">
-        </div>
+    <div id="toast-container" class="fixed top-16 right-5 md:top-5 md:right-5 z-[70] flex flex-col gap-2 w-[90%] md:w-auto pointer-events-none"></div>
 
     <div id="login-screen" class="flex-1 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center px-4 overflow-y-auto">
         <div class="absolute inset-0 bg-slate-900/80 fixed"></div>
@@ -59,17 +57,17 @@
             </div>
             <form onsubmit="event.preventDefault(); login();">
                 <div class="mb-4">
-                    <label class="block text-sm text-slate-400 mb-1">Kullanıcı Adı (admin, personel, sakin)</label>
-                    <input type="text" id="log-user" placeholder="örn: admin" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
+                    <label class="block text-sm text-slate-400 mb-1">Kullanıcı Adı</label>
+                    <input type="text" id="log-user" placeholder="admin / personel / sakin" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm text-slate-400 mb-1">Şifre</label>
-                    <input type="password" id="log-pass" placeholder="Herhangi bir şey yazın." class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition">
+                    <input type="password" id="log-pass" placeholder="Şifre: 123456" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
                 </div>
                 <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded transition shadow-lg shadow-indigo-500/30 active:scale-95">Giriş Yap</button>
             </form>
             <div class="mt-4 text-center text-xs text-slate-500">
-                Mobil Uyumlu Demo v2
+                Varsayılan şifre: 123456
             </div>
         </div>
     </div>
@@ -141,15 +139,13 @@
                                     <button onclick="deleteAllNotifications(event)" class="text-[10px] text-red-400 hover:text-red-300 transition p-1">Tümünü Sil</button>
                                 </div>
                             </div>
-                            <div id="notif-list" class="max-h-64 overflow-y-auto text-sm text-slate-300 smooth-scroll">
-                                </div>
+                            <div id="notif-list" class="max-h-64 overflow-y-auto text-sm text-slate-300 smooth-scroll"></div>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth w-full smooth-scroll pb-20 md:pb-6">
-                </div>
+            <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth w-full smooth-scroll pb-20 md:pb-6"></div>
         </main>
     </div>
 
@@ -238,10 +234,7 @@
                 <h3 class="font-bold text-white">Notlar & Cevaplar</h3>
                 <button onclick="closeModal('note-modal')" class="text-slate-400 hover:text-white p-2"><i class="fas fa-times"></i></button>
             </div>
-            
-            <div id="note-history" class="p-4 space-y-3 overflow-y-auto flex-1 bg-slate-800 smooth-scroll">
-                </div>
-
+            <div id="note-history" class="p-4 space-y-3 overflow-y-auto flex-1 bg-slate-800 smooth-scroll"></div>
             <div id="note-input-area" class="p-4 border-t border-slate-700 bg-slate-850 hidden shrink-0">
                 <textarea id="note-text" class="w-full p-2 bg-slate-700 rounded border border-slate-600 text-white mb-2 text-sm" rows="2" placeholder="Not ekle..."></textarea>
                 <button onclick="saveNote()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded w-full font-bold text-sm">Gönder</button>
@@ -304,10 +297,11 @@
     </div>
 
     <script>
+        // GÜNCELLENEN KISIM: Şifreler 123456 yapıldı
         const DEFAULT_USERS = [
-            { id: 1, username: 'admin', password: '123', full_name: 'Site Yöneticisi', role: 'admin', block: 'A', flat_no: 'Yönetim' },
-            { id: 2, username: 'personel', password: '123', full_name: 'Ahmet Görevli', role: 'staff', block: 'A', flat_no: 'Kapıcı' },
-            { id: 3, username: 'sakin', password: '123', full_name: 'Mehmet Yılmaz', role: 'resident', block: 'B', flat_no: '5' }
+            { id: 1, username: 'admin', password: '123456', full_name: 'Site Yöneticisi', role: 'admin', block: 'A', flat_no: 'Yönetim' },
+            { id: 2, username: 'personel', password: '123456', full_name: 'Ahmet Görevli', role: 'staff', block: 'A', flat_no: 'Kapıcı' },
+            { id: 3, username: 'sakin', password: '123456', full_name: 'Mehmet Yılmaz', role: 'resident', block: 'B', flat_no: '5' }
         ];
 
         const DEFAULT_ANNOUNCEMENTS = [
@@ -315,7 +309,13 @@
         ];
 
         const DB = {
-            getUsers: () => JSON.parse(localStorage.getItem('users')) || DEFAULT_USERS,
+            getUsers: () => {
+                // Eğer veri varsa ve eski şifreliyse güncellememiz gerekebilir ama basitlik için direkt alıyoruz.
+                // Kullanıcı tarayıcıyı temizlemediyse eski veri gelebilir.
+                // Bu demo için her seferinde varsayılanları üzerine yazmak en temizi olurdu ama
+                // kullanıcı eklediyseniz kaybolmasın diye sadece yoksa ekliyoruz.
+                return JSON.parse(localStorage.getItem('users')) || DEFAULT_USERS;
+            },
             setUsers: (data) => localStorage.setItem('users', JSON.stringify(data)),
             getComplaints: () => JSON.parse(localStorage.getItem('complaints')) || [],
             setComplaints: (data) => localStorage.setItem('complaints', JSON.stringify(data)),
@@ -328,8 +328,24 @@
             getNotifications: () => JSON.parse(localStorage.getItem('notifications')) || [],
             setNotifications: (data) => localStorage.setItem('notifications', JSON.stringify(data))
         };
+        
+        // ÖNEMLİ: Daha önce çalıştırıldıysa eski şifreleri "123456" ile güncelle (Sadece default userlar için)
+        // Bu blok, eski localStorage verisi varsa bile admin/personel/sakin şifrelerini düzeltir.
+        if(localStorage.getItem('users')) {
+            let existingUsers = JSON.parse(localStorage.getItem('users'));
+            let updated = false;
+            existingUsers = existingUsers.map(u => {
+                if(['admin', 'personel', 'sakin'].includes(u.username) && u.password !== '123456') {
+                    u.password = '123456';
+                    updated = true;
+                }
+                return u;
+            });
+            if(updated) localStorage.setItem('users', JSON.stringify(existingUsers));
+        } else {
+            DB.setUsers(DEFAULT_USERS);
+        }
 
-        if(!localStorage.getItem('users')) DB.setUsers(DEFAULT_USERS);
         if(!localStorage.getItem('announcements')) DB.setAnnouncements(DEFAULT_ANNOUNCEMENTS);
 
         let currentUser = null;
@@ -368,15 +384,23 @@
             DB.setNotifications(notifs);
         }
 
+        // GÜNCELLENEN KISIM: Login Kontrolü
         function login() {
             const u = document.getElementById('log-user').value.trim();
+            const p = document.getElementById('log-pass').value.trim(); // Şifreyi al
+            
             const users = DB.getUsers();
             const found = users.find(x => x.username === u);
 
             if(found) {
-                currentUser = found;
-                initApp();
-                showToast('Giriş Başarılı', 'success');
+                // Şifre kontrolü ekledik
+                if(found.password === p) {
+                    currentUser = found;
+                    initApp();
+                    showToast('Giriş Başarılı', 'success');
+                } else {
+                    showToast('Hatalı şifre! (123456 deneyin)', 'error');
+                }
             } else {
                 showToast('Kullanıcı bulunamadı', 'error');
             }
@@ -411,7 +435,6 @@
         }
 
         function nav(page) {
-            // Mobilde menüyü kapat
             if(window.innerWidth < 768) {
                 const sidebar = document.getElementById('main-sidebar');
                 if(!sidebar.classList.contains('-translate-x-full')) toggleSidebar();
