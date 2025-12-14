@@ -53,7 +53,7 @@
             <form onsubmit="event.preventDefault(); login();">
                 <div class="mb-4">
                     <label class="block text-sm text-slate-400 mb-1">Kullanıcı Adı</label>
-                    <input type="text" id="log-user" placeholder="örn: ayse / admin / personel" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
+                    <input type="text" id="log-user" placeholder="örn: ayse / personel / admin" class="w-full bg-slate-700 border border-slate-600 rounded p-3 text-white focus:border-indigo-500 focus:outline-none transition" required>
                 </div>
                 <div class="mb-6">
                     <label class="block text-sm text-slate-400 mb-1">Şifre</label>
@@ -190,7 +190,7 @@
     </div>
 
     <div id="note-modal" class="hidden fixed inset-0 modal-bg z-[80] flex items-center justify-center p-4">
-        <div class="bg-slate-800 rounded-lg w-full max-w-lg border border-slate-700 shadow-xl overflow-hidden flex flex-col max-h-[80vh]">
+        <div class="bg-slate-800 rounded-lg w-full max-w-lg border border-slate-700 shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
             <div class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-850 shrink-0">
                 <h3 class="font-bold text-white">Notlar & Cevaplar</h3>
                 <button onclick="closeModal('note-modal')" class="text-slate-400 hover:text-white p-2"><i class="fas fa-times"></i></button>
@@ -242,32 +242,31 @@
     </div>
 
     <script>
-        // --- 1. TEST KULLANICILARI ---
         const DEFAULT_USERS = [
             { id: 1, username: 'admin', password: '123456', full_name: 'Site Yöneticisi', role: 'admin', block: 'A', flat_no: 'Yönetim' },
             { id: 2, username: 'personel', password: '123456', full_name: 'Ahmet Görevli', role: 'staff', block: 'A', flat_no: 'Kapıcı' },
             { id: 3, username: 'sakin', password: '123456', full_name: 'Mehmet Yılmaz', role: 'resident', block: 'B', flat_no: '5' },
-            // Yeni Test Kullanıcıları
             { id: 4, username: 'ayse', password: '123456', full_name: 'Ayşe Tekin', role: 'resident', block: 'C', flat_no: '12' },
             { id: 5, username: 'ali', password: '123456', full_name: 'Ali Yıldız', role: 'resident', block: 'D', flat_no: '8' },
             { id: 6, username: 'fatma', password: '123456', full_name: 'Fatma Demir', role: 'resident', block: 'A', flat_no: '3' },
             { id: 7, username: 'veli', password: '123456', full_name: 'Veli Can', role: 'resident', block: 'B', flat_no: '1' }
         ];
 
-        // --- 2. VARSAYILAN DUYURULAR ---
         const DEFAULT_ANNOUNCEMENTS = [
             { id: 1, title: 'Hoşgeldiniz', content: 'Yeni site yönetim sistemimiz yayında. Kullanıcı adınız ve şifrenizle giriş yapabilirsiniz.', priority: 'Normal', created_by: 1, created_at: new Date().toISOString(), photo_url: null },
             { id: 2, title: 'Su Kesintisi', content: 'Belediye çalışması nedeniyle yarın 12:00 - 15:00 arası su kesintisi olacaktır.', priority: 'Önemli', created_by: 1, created_at: new Date(Date.now() - 86400000).toISOString(), photo_url: null }
         ];
 
-        // --- 3. VARSAYILAN ŞİKAYETLER (Canlı Hissettirmek İçin) ---
+        // 101 ID'li şikayetin updated_at değerini 2 gün sonrasına ayarlayalım ki çözüm süresi çıksın
+        const createDate = new Date(Date.now() - 172800000); // 2 gün önce
+        const resolveDate = new Date(); // Bugün
+
         const DEFAULT_COMPLAINTS = [
-            { id: 101, user_id: 4, title: 'Koridor lambası yanmıyor', description: 'C Blok 3. kat koridor lambası patlak, karanlık oluyor.', category: 'Elektrik', priority: 'Normal', status: 'Çözüldü', is_private: 0, created_at: new Date(Date.now() - 172800000).toISOString(), photos: [] }, // 2 gün önce
-            { id: 102, user_id: 5, title: 'Asansör gürültüsü', description: 'D Blok asansörü 4. kata gelirken sürtünme sesi çıkarıyor.', category: 'Asansör', priority: 'Önemli', status: 'İnceleniyor', is_private: 0, created_at: new Date(Date.now() - 43200000).toISOString(), photos: [] }, // 12 saat önce
-            { id: 103, user_id: 3, title: 'Bahçe kapısı kapanmıyor', description: 'Otomatik kapı sensörü bazen algılamıyor.', category: 'Genel', priority: 'Normal', status: 'Yeni', is_private: 0, created_at: new Date(Date.now() - 3600000).toISOString(), photos: [] } // 1 saat önce
+            { id: 101, user_id: 4, title: 'Koridor lambası yanmıyor', description: 'C Blok 3. kat koridor lambası patlak, karanlık oluyor.', category: 'Elektrik', priority: 'Normal', status: 'Çözüldü', is_private: 0, created_at: createDate.toISOString(), updated_at: resolveDate.toISOString(), photos: [] }, 
+            { id: 102, user_id: 5, title: 'Asansör gürültüsü', description: 'D Blok asansörü 4. kata gelirken sürtünme sesi çıkarıyor.', category: 'Asansör', priority: 'Önemli', status: 'İnceleniyor', is_private: 0, created_at: new Date(Date.now() - 43200000).toISOString(), photos: [] },
+            { id: 103, user_id: 3, title: 'Bahçe kapısı kapanmıyor', description: 'Otomatik kapı sensörü bazen algılamıyor.', category: 'Genel', priority: 'Normal', status: 'Yeni', is_private: 0, created_at: new Date(Date.now() - 3600000).toISOString(), photos: [] }
         ];
 
-        // --- 4. VARSAYILAN MESAJLAR ---
         const DEFAULT_MESSAGES = [
             { id: 1, sender_id: 2, receiver_id: 1, content: 'Başkanım, A blok girişindeki temizlik tamamlandı.', created_at: new Date(Date.now() - 3600000).toISOString() },
             { id: 2, sender_id: 1, receiver_id: 2, content: 'Eline sağlık Ahmet, B bloğa geçebilirsin.', created_at: new Date(Date.now() - 1800000).toISOString() }
@@ -276,45 +275,28 @@
         const DB = {
             getUsers: () => JSON.parse(localStorage.getItem('users')) || DEFAULT_USERS,
             setUsers: (data) => localStorage.setItem('users', JSON.stringify(data)),
-            
             getComplaints: () => JSON.parse(localStorage.getItem('complaints')) || DEFAULT_COMPLAINTS,
             setComplaints: (data) => localStorage.setItem('complaints', JSON.stringify(data)),
-            
             getAnnouncements: () => JSON.parse(localStorage.getItem('announcements')) || DEFAULT_ANNOUNCEMENTS,
             setAnnouncements: (data) => localStorage.setItem('announcements', JSON.stringify(data)),
-            
             getMessages: () => JSON.parse(localStorage.getItem('messages')) || DEFAULT_MESSAGES,
             setMessages: (data) => localStorage.setItem('messages', JSON.stringify(data)),
-            
             getNotes: () => JSON.parse(localStorage.getItem('notes')) || [],
             setNotes: (data) => localStorage.setItem('notes', JSON.stringify(data)),
-            
             getNotifications: () => JSON.parse(localStorage.getItem('notifications')) || [],
             setNotifications: (data) => localStorage.setItem('notifications', JSON.stringify(data))
         };
 
-        // Eğer local storage boşsa, default verileri yükle
         if(!localStorage.getItem('users')) DB.setUsers(DEFAULT_USERS);
         if(!localStorage.getItem('complaints')) DB.setComplaints(DEFAULT_COMPLAINTS);
         if(!localStorage.getItem('announcements')) DB.setAnnouncements(DEFAULT_ANNOUNCEMENTS);
         if(!localStorage.getItem('messages')) DB.setMessages(DEFAULT_MESSAGES);
 
-        // Kullanıcı şifre güncelleme (Eski kullanıcılar için)
         if(localStorage.getItem('users')) {
             let existingUsers = JSON.parse(localStorage.getItem('users'));
             let updated = false;
-            // Yeni kullanıcıları da listeye ekle (eğer yoksa)
-            DEFAULT_USERS.forEach(defUser => {
-                if(!existingUsers.find(u => u.username === defUser.username)) {
-                    existingUsers.push(defUser);
-                    updated = true;
-                }
-            });
-            // Şifreleri güncelle
-            existingUsers = existingUsers.map(u => {
-                if(u.password !== '123456') { u.password = '123456'; updated = true; }
-                return u;
-            });
+            DEFAULT_USERS.forEach(defUser => { if(!existingUsers.find(u => u.username === defUser.username)) { existingUsers.push(defUser); updated = true; } });
+            existingUsers = existingUsers.map(u => { if(u.password !== '123456') { u.password = '123456'; updated = true; } return u; });
             if(updated) localStorage.setItem('users', JSON.stringify(existingUsers));
         }
 
@@ -497,8 +479,8 @@
             if(currentUser.role === 'resident') { data = data.filter(c => c.user_id === currentUser.id || c.is_private === 0); }
             data = data.filter(c => {
                 const matchesSearch = c.title.toLowerCase().includes(search) || c.description.toLowerCase().includes(search);
-                const matchesCat = cat ? c.category === cat : true;
-                const matchesStatus = status ? c.status === status : true;
+                const matchesCat = c.category === cat || !cat;
+                const matchesStatus = c.status === status || !status;
                 return matchesSearch && matchesCat && matchesStatus;
             });
             data.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
@@ -612,6 +594,19 @@
             const complaints = DB.getComplaints();
             const users = DB.getUsers();
             const total = complaints.length;
+            
+            // Ortalama Çözüm Süresi Hesabı
+            const resolved = complaints.filter(c => c.status === 'Çözüldü');
+            let avgDays = 0;
+            if (resolved.length > 0) {
+                const totalTime = resolved.reduce((acc, c) => {
+                    const start = new Date(c.created_at);
+                    const end = new Date(c.updated_at || c.created_at);
+                    return acc + (end - start);
+                }, 0);
+                avgDays = Math.round(totalTime / (1000 * 60 * 60 * 24));
+            }
+
             const statusCounts = {};
             complaints.forEach(c => { statusCounts[c.status] = (statusCounts[c.status] || 0) + 1; });
             const catCounts = {};
@@ -621,7 +616,7 @@
                 const u = users.find(x => x.id === c.user_id);
                 if(u && u.block) blockCounts[u.block] = (blockCounts[u.block] || 0) + 1;
             });
-            c.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Toplam Şikayet</div><div class="text-4xl font-bold text-indigo-400">${total}</div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Örnek Veri Modu</div><div class="text-sm text-green-400 mt-2">Bu veriler tarayıcıda oluşturulmuştur.</div></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Kategori Dağılımı</h4><div class="relative h-64 w-full"><canvas id="chartCat"></canvas></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Durum Analizi</h4><div class="relative h-64 w-full"><canvas id="chartStatus"></canvas></div></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700 mb-6"><h4 class="mb-4 font-bold text-slate-300">Blok Bazlı Şikayet Yoğunluğu</h4><div class="relative h-64 w-full"><canvas id="chartHeat"></canvas></div></div>`;
+            c.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Toplam Şikayet</div><div class="text-4xl font-bold text-indigo-400">${total}</div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><div class="text-slate-400 text-sm">Ortalama Çözüm Süresi</div><div class="text-4xl font-bold text-green-400">${avgDays} Gün</div></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Kategori Dağılımı</h4><div class="relative h-64 w-full"><canvas id="chartCat"></canvas></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700"><h4 class="mb-4 font-bold text-slate-300">Durum Analizi</h4><div class="relative h-64 w-full"><canvas id="chartStatus"></canvas></div></div></div><div class="bg-slate-800 p-6 rounded border border-slate-700 mb-6"><h4 class="mb-4 font-bold text-slate-300">Blok Bazlı Şikayet Yoğunluğu</h4><div class="relative h-64 w-full"><canvas id="chartHeat"></canvas></div></div>`;
             setTimeout(() => {
                 new Chart(document.getElementById('chartCat'), { type: 'bar', data: { labels: Object.keys(catCounts), datasets: [{ label:'Adet', data: Object.values(catCounts), backgroundColor: '#6366f1' }] }, options: { maintainAspectRatio: false } }); 
                 new Chart(document.getElementById('chartStatus'), { type: 'doughnut', data: { labels: Object.keys(statusCounts), datasets: [{ data: Object.values(statusCounts), backgroundColor: ['#3b82f6','#22c55e','#eab308','#ef4444'] }] }, options: { maintainAspectRatio: false } });
