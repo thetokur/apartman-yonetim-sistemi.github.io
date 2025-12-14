@@ -4,7 +4,7 @@ Bu proje, site ve apartman yönetim süreçlerini dijitalleştirmek amacıyla ge
 
 **Not:** Bu sürüm GitHub Pages üzerinde çalışabilmesi için **Serverless (Sunucusuz)** modda tasarlanmıştır. Veritabanı olarak tarayıcının `LocalStorage` özelliğini kullanır. Sayfayı yenileseniz bile verileriniz kaybolmaz (tarayıcı önbelleği temizlenene kadar).
 
-🔗 **Canlı Demo:** https://thetokur.github.io/apartman-yonetim-sistemi.github.io/
+🔗 **Canlı Demo:** [https://thetokur.github.io/apartman-yonetim-sistemi.github.io/](https://thetokur.github.io/apartman-yonetim-sistemi.github.io/)
 
 ---
 
@@ -21,18 +21,21 @@ Bu proje, site ve apartman yönetim süreçlerini dijitalleştirmek amacıyla ge
 
 ---
 
-## 🔐 Giriş Bilgileri (Demo Hesapları)
+## 🔐 Giriş Bilgileri (Test Hesapları)
 
 Sistemi test etmek için aşağıdaki varsayılan hesapları kullanabilirsiniz.
 **Tüm hesaplar için ortak şifre:** `123456`
 
-| Rol | Kullanıcı Adı | Şifre | Yetkiler |
-| :--- | :--- | :--- | :--- |
-| **Yönetici** | `admin` | `123456` | Tüm yetkiler, kullanıcı ekleme, istatistikler. |
-| **Personel** | `personel` | `123456` | Duyuru ekleme, mesajlaşma, şikayet görüntüleme. |
-| **Sakin** | `sakin` | `123456` | Şikayet oluşturma, duyuru okuma. |
+| Rol | Kullanıcı Adı | Şifre | Yetkiler | Detaylar |
+| :--- | :--- | :--- | :--- | :--- |
+| **Yönetici** | `admin` | `123456` | Tam yetki, İstatistikler | Yönetim |
+| **Personel** | `personel` | `123456` | Duyuru, Mesajlaşma | Kapıcı |
+| **Sakin** | `ayse` | `123456` | Şikayet, Duyuru | C Blok / Daire 12 |
+| **Sakin** | `ali` | `123456` | Şikayet, Duyuru | D Blok / Daire 8 |
+| **Sakin** | `fatma` | `123456` | Şikayet, Duyuru | A Blok / Daire 3 |
+| **Sakin** | `veli` | `123456` | Şikayet, Duyuru | B Blok / Daire 1 |
 
-> **Not:** Giriş ekranında farklı bir şifre girerseniz sistem hata verecektir.
+> **Not:** Şifreler güvenlik simülasyonu için kod içerisinde sabitlenmiştir.
 
 ---
 
@@ -60,7 +63,6 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için herhangi bir sunucu ku
 2.  Klasörün içindeki `index.html` dosyasına çift tıklayın.
 3.  Proje varsayılan tarayıcınızda açılacaktır.
 
-
 ---
 
 ## ⚠️ Önemli Bilgilendirme
@@ -72,4 +74,4 @@ Bu proje bir **Demo/Prototip** çalışmasıdır.
 
 ---
 
-**Geliştirici:** [Talayhan Tuğra TOKUR]
+**Geliştirici:** Tokur
